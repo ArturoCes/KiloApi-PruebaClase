@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Setter
+
 public class DetalleAportacion {
 
     @EmbeddedId
@@ -19,6 +20,7 @@ public class DetalleAportacion {
 
     @ManyToOne
     @JoinColumn(name = "aportacion_id", foreignKey = @ForeignKey(name = "FK_DETALLE_APORTACION"))
+
     private Aportacion aportacion;
 
     @ManyToOne

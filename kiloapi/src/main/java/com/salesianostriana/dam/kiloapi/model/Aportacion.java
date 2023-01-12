@@ -20,6 +20,7 @@ import java.util.Set;
 @Setter
 
 
+
 public class Aportacion {
     @Id
     @GeneratedValue

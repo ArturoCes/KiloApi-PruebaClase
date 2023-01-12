@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -256,8 +257,16 @@ public class MainPrueba {
         aportacionRepository.saveAll(List.of(a1, a2, a3, a4));
 
         //TODO imprimir los resultados de lo modificado para comprobar que se realize correctamente
+        List<Clase> clases = claseRepository.findAll();
+        clases.forEach(clase -> {
+            System.out.println("Nombre de la clase: " + clase.getNombre());
+            clase.getAportacionList().forEach(aportacion -> {
+                System.out.println("Fecha de la aportación: " + aportacion.getFecha());
+                System.out.println("Clase: " + aportacion.getClase().getNombre());
+                System.out.println("Lista de detalles de aportación: " + aportacion.getDetalleAportacionList());
+            });
+        });
 
 
-        System.out.println(claseRepository.findAll());
     }
 }

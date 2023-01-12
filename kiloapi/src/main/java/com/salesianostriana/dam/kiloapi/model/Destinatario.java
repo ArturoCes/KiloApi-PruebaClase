@@ -12,7 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
+@NamedEntityGraph
+        (name="destinatario-con-caja",
+                attributeNodes = {
+                        @NamedAttributeNode(value = "cajaList",
+                                subgraph = "caja-tiene")
+                }, subgraphs = {
+                @NamedSubgraph(name="caja-tiene",
+                        attributeNodes = {
+                                @NamedAttributeNode("tieneList")
+                        })
+        })
 public class Destinatario {
 
     @Id
