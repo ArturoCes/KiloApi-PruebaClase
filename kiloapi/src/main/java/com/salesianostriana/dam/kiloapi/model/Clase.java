@@ -1,10 +1,14 @@
 package com.salesianostriana.dam.kiloapi.model;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -35,8 +39,9 @@ public class Clase {
     private String tutor;
 
     @OneToMany(mappedBy = "clase",fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
     @Builder.Default
-    private List<Aportacion> aportacionList = new ArrayList<>();
+    private Set<Aportacion> aportacionList = new HashSet<>();
 
 
     @PreRemove

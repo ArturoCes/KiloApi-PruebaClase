@@ -31,7 +31,8 @@ public interface ClaseRepository extends JpaRepository<Clase, Long> {
     )
     Optional<ClaseDto> getClaseById(@Param("id")Long id);
 
-
-    @EntityGraph("clase-con-aportaciones")
-    Optional<Clase> findById(Long id);
+    //Consulta con grafo de entidad
+    @EntityGraph(value = "clase-con-aportaciones", type = EntityGraph.EntityGraphType.LOAD)
+    List<Clase> findAll();
 }
+

@@ -2,11 +2,15 @@ package com.salesianostriana.dam.kiloapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -30,8 +34,10 @@ public class Aportacion {
 
     @JsonIgnore
     @OneToMany(mappedBy = "aportacion",cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
     @Builder.Default
-    private List<DetalleAportacion> detalleAportacionList = new ArrayList<>();
+    private Set<DetalleAportacion> detalleAportacionList = new HashSet<>();
+
 
 
     // HELPERS DE GESTIÓN APORTACIÓN-DETALLEAPORTACIÓN

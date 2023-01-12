@@ -256,5 +256,8 @@ public class MainPrueba {
         aportacionRepository.saveAll(List.of(a1, a2, a3, a4));
 
         //TODO imprimir los resultados de lo modificado para comprobar que se realize correctamente
+
+
+        System.out.println(claseRepository.findAll());
     }
 }
